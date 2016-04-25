@@ -1,0 +1,27 @@
+{
+  "name": "esave",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "casperjs": "^1.1.1",
+    "chai": "^3.5.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-casperjs": "0.0.5",
+    "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.0.6",
+    "mongodb": "^2.1.16",
+    "querystring": "^0.2.0",
+    "request": "^2.72.0",
+    "underscore": "^1.8.3"
+  }
+}
