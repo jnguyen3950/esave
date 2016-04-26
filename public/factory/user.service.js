@@ -16,10 +16,11 @@ function userService($http) {
         console.log(res.data);
         return res.data;
       });
-    })
+    });
   }
 
   return {
-    search: search
+    search: search,
+    calculateDistance: calculateDistance
   }
 }

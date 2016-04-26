@@ -12,7 +12,6 @@ function searchItem() {
   xhr.setRequestHeader('Content-type', 'application/json');
   xhr.send(JSON.stringify(data));
   xhr.addEventListener('load', function() {
-    var response = JSON.parse(xhr.response);
-    console.log(response);
+    var response = JSON.parse(xhr.responseText);
   });
 }

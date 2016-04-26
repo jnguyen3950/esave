@@ -13,26 +13,26 @@ var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
 app.use(express.static('./public/'));
 
 app.post('/search', jsonParser, function(req, res) {
- var queryParam = {
-   'keywords': 'harry potter phoenix',
-   'buyerPostalCode': 92660,
-   'itemFilter.name': 'MaxDistance',
-   'itemFilter.value': 25,
-   'paginationInput.entriesPerPage': 10,
-   'paginationInput.pageNumber': 1
-}
+  var queryParam = {
+    'keywords': 'Lego',
+    'buyerPostalCode': 92660,
+    'itemFilter.name': 'MaxDistance',
+    'itemFilter.value': 25,
+    'paginationInput.entriesPerPage': 10,
+    'paginationInput.pageNumber': 1
+  }
 
- request('http://svcs.ebay.com/services/search/FindingService/v1?'
+  request('http://svcs.ebay.com/services/search/FindingService/v1?'
   + 'OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.13.0'
   + '&SECURITY-APPNAME=' + appID
   + '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&'
   + querystring.stringify(queryParam), function(err, response, body) {
-   if(err) res.send(err);
-   res.send(body);
- });
+    if(err) res.send(err);
+    res.send(body);
+  });
 });
 
 var port = process.env.PORT || 1337;
 app.listen(port, function() {
- console.log("listening on port " + port);
+  console.log("listening on port " + port);
 });
