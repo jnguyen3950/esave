@@ -13,7 +13,12 @@
         <button id="button" class="btn btn-default btn-success">Click</button>
       </div>
       <div ng-controller="searchController as search">
-        <a id="searchResult" href="/#/search">Show</a>
+        <a id="searchResult" ng-href="/#/search">Show</a>
+
+        <input ng-model="term" type="text" class="form-control" placeholder="Item Name">
+        <span class="input-group-btn">
+          <button ng-click="search.newSearch(term)" class="btn btn-default btn-success addCart">Search</button>
+        </span>
         <div ng-view></div>
       </div>
     </div>

@@ -1,20 +1,19 @@
 <div ng-repeat="item in search.list">
-
   <div class="media">
     <div class="media-left media-middle">
       <div>
-        <img class="media-object" src={{item.galleryURL[0]}} alt="Generic placeholder image">
+        <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
       </div>
     </div>
     <div class="media-body">
       <h4 class="media-heading">{{item.title[0]}}</h4>
       <div class="col-md-8">
-        <h4>Pick this up and you may save: {{item.shippingInfo[0].shippingServiceCost[0].__value__}}</h4>
+        <h4>Pick this up and you may save: ${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</h4>
         <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
         <p>Condition: {{item.condition[0].conditionDisplayName[0]}}</p>
       </div>
       <div class="col-md-4">
-        <input type="checkbox">
+        <button ng-click="" class="btn btn-default btn-success addCart">Add to cart</button>
       </div>
     </div>
   </div>
