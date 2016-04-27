@@ -8,30 +8,17 @@
 </head>
 <body ng-app="esave">
   <div class="container">
-    <div class="panel panel-default">
-      <div class="panel-title">
-        <button id="button" class="btn btn-default btn-success">Click</button>
-      </div>
-      <div ng-controller="searchController as search">
-        <a id="searchResult" ng-href="/#/search">Show</a>
-
-        <input ng-model="term" type="text" class="form-control" placeholder="Item Name">
-        <span class="input-group-btn">
-          <button ng-click="search.newSearch(term)" class="btn btn-default btn-success addCart">Search</button>
-        </span>
-        <div ng-view></div>
-      </div>
-    </div>
+    <h1>eSave</h1>
+    <a id="searchResult" ng-href="/#/search">Show</a>
+    <div ng-view></div>
   </div>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.9/angular-route.min.js"></script>
   <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-  <script src="client.js"></script>
   <script src="app.js"></script>
   <script src="search/search.controller.js"></script>
-  <script src="factory/user.service.js"></script>
-  <script src="search/list.directive.js"></script>
+  <script src="search/search.factory.js"></script>
 </body>
 </html>

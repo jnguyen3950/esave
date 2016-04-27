@@ -32,6 +32,7 @@ app.post('/search/:term', jsonParser, function(req, res) {
       if(err) res.send(err);
       res.send(body);
     });
+    console.log(req.params.term);
   }
 });
 
