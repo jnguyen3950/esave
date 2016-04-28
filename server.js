@@ -12,7 +12,7 @@ var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
 
 app.use(express.static('./public/'));
 
-app.post('/search/:term', jsonParser, function(req, res) {
+app.get('/search/:term', function(req, res) {
   if(req.params.term == undefined) res.sendStatus(404);
   else {
     var queryParam = {
@@ -32,11 +32,11 @@ app.post('/search/:term', jsonParser, function(req, res) {
       if(err) res.send(err);
       res.send(body);
     });
-    console.log(req.params.term);
   }
 });
 
-var port = process.env.PORT || 1337;
-app.listen(port, function() {
-  console.log("listening on port " + port);
-});
+if(!require.main.loaded) {
+  var server = app.listen(8080);
+}
+
+module.exports = app;
