@@ -8,7 +8,7 @@ casper.test.begin('eSave casper test suit', 2, function suite(test) {
   });
   casper.then(function() {
     this.sendKeys('input#newTerm', 'Lego');
-    this.click('button#searchButton');
+    this.click('#searchButton');
   });
   casper.wait(1000, function() {
     this.capture('esaveSearch.png', {
