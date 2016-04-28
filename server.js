@@ -36,7 +36,7 @@ app.get('/search/:term', function(req, res) {
 });
 
 if(!require.main.loaded) {
-  var server = app.listen(1337);
+  var server = app.listen(8080);
 }
 
 module.exports = app;
