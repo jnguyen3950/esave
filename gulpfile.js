@@ -8,12 +8,13 @@ var server = '';
 gulp.task('mocha', function() {
   return gulp.src('./server.spec.js', {read: false})
   .pipe(mocha());
-})
+});
 
 gulp.task('casper', function() {
-  gulp.src('casper.spec.js').pipe(casperjs());
-})
+  return gulp.src('casper.spec.js').pipe(casperjs({command:'test'}));
+});
 
 gulp.task('default', ['mocha'], function() {
-  server.close();
-})
+  // server.close();
+  process.exit(0);
+});
