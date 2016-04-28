@@ -9,8 +9,10 @@ casper.test.begin('eSave casper test suit', 2, function suite(test) {
       width: 400,
       height: 1000
     });
-    this.clickLabel('Show', 'a');
   })
+  casper.thenEvaluate(function() {
+    document.querySelector('#searchResult').click();
+  });
   casper.wait(200, function() {
     test.assertUrlMatch('http://localhost:' + 8080 + '/#/search', "eSave Url match.");
   });
