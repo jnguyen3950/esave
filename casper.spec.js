@@ -1,5 +1,5 @@
 casper.test.begin('eSave casper test suit', 2, function suite(test) {
-  casper.start("http://localhost:" + 8080, function() {
+  casper.start("http://localhost:" + 8080 + "/#", function() {
     test.assertTitle("eSave", "eSave title is found.");
     this.click('#searchResult');
   })
