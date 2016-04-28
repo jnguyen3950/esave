@@ -1,6 +1,8 @@
 casper.test.begin('eSave casper test suit', 2, function suite(test) {
-  casper.start("http://localhost:" + 8080 + "/#", function() {
+  casper.start("http://localhost:" + 8080, function() {
     test.assertTitle("eSave", "eSave title is found.");
+  })
+  casper.wait(200, function() {
     this.click('#searchResult');
   })
   casper.wait(200, function() {
@@ -14,7 +16,7 @@ casper.test.begin('eSave casper test suit', 2, function suite(test) {
     this.capture('esaveSearch.png', {
       top: 0,
       left: 0,
-      width: 500,
+      width: 400,
       height: 1000
     });
   });
