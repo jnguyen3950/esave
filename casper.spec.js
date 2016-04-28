@@ -13,7 +13,7 @@ casper.test.begin('eSave casper test suit', 2, function suite(test) {
   casper.thenEvaluate(function() {
     document.querySelector('#searchResult').click();
   });
-  casper.wait(200, function() {
+  casper.wait(500, function() {
     test.assertUrlMatch('http://localhost:' + 8080 + '/#/search', "eSave Url match.");
   });
   casper.then(function() {
