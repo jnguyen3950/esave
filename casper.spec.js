@@ -3,17 +3,23 @@ casper.test.begin('eSave casper test suit', 2, function suite(test) {
     test.assertTitle("eSave", "eSave title is found.");
   })
   casper.wait(200, function() {
-    this.click('#searchResult');
+    this.capture('Home-Page.png', {
+      top: 0,
+      left: 0,
+      width: 400,
+      height: 1000
+    });
+    this.clickLabel('Show', 'a');
   })
   casper.wait(200, function() {
     test.assertUrlMatch('http://localhost:' + 8080 + '/#/search', "eSave Url match.");
   });
   casper.then(function() {
     this.sendKeys('input#newTerm', 'Lego');
-    this.click('#searchButton');
+    this.clickLabel('Search', 'button');
   });
   casper.wait(1000, function() {
-    this.capture('esaveSearch.png', {
+    this.capture('Search-Page.png', {
       top: 0,
       left: 0,
       width: 400,
