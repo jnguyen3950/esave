@@ -3,6 +3,7 @@ casper.test.begin('eSave casper test suit', 2, function suite(test) {
     test.assertTitle("eSave", "eSave title is found.");
   })
   casper.wait(200, function() {
+    casper.echo(this.page.content);
     this.capture('Home-Page.png', {
       top: 0,
       left: 0,
