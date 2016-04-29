@@ -6,9 +6,23 @@ function search($http, Search) {
   var vm = this;
 
   vm.newSearch = function(term) {
-    var promise = Search.items(term);
-    promise.then(function(result) {
-      vm.list = result.data.findItemsByKeywordsResponse[0].searchResult[0].item;
+    var promise = new Promise(function(resolve, reject) {
+      window.navigator.geolocation.getCurrentPosition(function(pos){
+        $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
+          $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
+            var zipcode = res.data.results[0].address_components[6].long_name;
+            vm.zipcode = zipcode;
+            resolve(zipcode);
+          });
+        });
+      });
+    })
+
+    promise.then(function(zipcode) {
+      var items = Search.items(term);
+      items.then(function(result) {
+        vm.list = result.data.findItemsByKeywordsResponse[0].searchResult[0].item;
+      });
     });
   }
 }

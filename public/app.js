@@ -6,5 +6,10 @@ app.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'search/search.view.html',
     controller: 'searchController',
     controllerAs: 'search'
-  });
+  })
+  .otherwise({
+    templateUrl: 'greeting/greeting.view.html',
+    // controller: 'greetingController',
+    // controllerAs: 'greeting'
+  })
 }]);
