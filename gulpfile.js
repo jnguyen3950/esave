@@ -14,11 +14,7 @@ gulp.task('mocha', function() {
   .pipe(mocha());
 });
 
-gulp.task('casper', ['mocha'], function() {
-  return gulp.src('casper.spec.js').pipe(casperJS({command:'test'}));
-});
-
-gulp.task('killNode', ['casper'], function() {
+gulp.task('killNode', ['mocha'], function() {
   childNode.kill();
 });
 
