@@ -6,6 +6,7 @@ function search($http, Search) {
   var vm = this;
 
   vm.newSearch = function(term, zip, dist, minPrice, maxPrice) {
+    console.log(window.location);
     this.zip = zip || 92660;
     this.dist = dist || 25;
     this.minPrice = minPrice || 0;
@@ -26,7 +27,12 @@ function search($http, Search) {
       var items = Search.items(term, this.zip, this.dist, this.minPrice, this.maxPrice);
       items.then(function(result) {
         vm.list = result.data.findItemsByKeywordsResponse[0].searchResult[0].item;
+        console.log(vm.list);
       });
     });
+  }
+
+  vm.createDynamicURL = function() {
+    return "/info/" + vm.list[0].itemId[0];
   }
 }
