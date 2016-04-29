@@ -31,6 +31,6 @@ function search($http, Search) {
   }
 
   vm.createDynamicURL = function(item) {
-    return "/info/" + item.itemId[0];
+    return "/#/info/" + item.itemId[0];
   }
 }

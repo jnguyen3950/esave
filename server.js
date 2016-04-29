@@ -43,7 +43,7 @@ app.get('/info/:itemId', function(req, res) {
 
   request('http://open.api.ebay.com/shopping?'
   + 'callname=GetSingleItem&'
-  + 'responseencoding=XML&'
+  + 'responseencoding=JSON&'
   + 'appid=' + appID
   + '&siteid=0&'
   + 'version=515&'
