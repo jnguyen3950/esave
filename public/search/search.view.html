@@ -4,7 +4,7 @@
   <div class="input-group">
     <input id="newTerm" ng-model="term" type="text" class="form-control" placeholder="Item Name">
     <span class="input-group-btn">
-      <button id="searchButton" ng-click="search.newSearch(term)" class="btn btn-default btn-success">Search</button>
+      <button id="searchButton" ng-click="search.newSearch(term, zip, dist, min, max)" class="btn btn-default btn-success">Search</button>
     </span>
   </div>
 
@@ -12,29 +12,30 @@
 
   <div class="col-md-6">
     <div class="form-group row">
-      <label for="zipcode" class="col-md-3 form-control-label">Zipcode</label>
+      <label for="zip" class="col-md-3 form-control-label">Zipcode</label>
       <div class="col-md-7">
-        <input ng-model="zipcode" type="text" class="form-control" id="zipcode" placeholder="5 digits">
+        <input ng-model="zip" type="text" class="form-control" id="zip" placeholder="5 digits">
       </div>
     </div>
     <div class="form-group row">
-      <label for="distance" class="col-md-3 form-control-label">Distance</label>
+      <label for="dist" class="col-md-3 form-control-label">Distance</label>
       <div class="col-md-7">
-        <input ng-model="distance" type="text" class="form-control" id="distance" placeholder="in mileage">
+        <input ng-model="dist" type="text" class="form-control" id="dist" placeholder="in mileage">
       </div>
     </div>
   </div>
+  
   <div class="col-md-6">
     <div class="form-group row">
       <label for="minPrice" class="col-md-3 form-control-label">Min Price</label>
       <div class="col-md-7">
-        <input ng-model="minPrice" type="text" class="form-control" id="minPrice" placeholder="$">
+        <input ng-model="min" type="text" class="form-control" id="minPrice" placeholder="$">
       </div>
     </div>
     <div class="form-group row">
-      <label for="distance" class="col-md-3 form-control-label">Max Price</label>
+      <label for="maxPrice" class="col-md-3 form-control-label">Max Price</label>
       <div class="col-md-7">
-        <input ng-model="maxPrice" type="text" class="form-control" id="distance" placeholder="$">
+        <input ng-model="max" type="text" class="form-control" id="maxPrice" placeholder="$">
       </div>
     </div>
   </div>
