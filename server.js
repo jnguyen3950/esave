@@ -51,7 +51,7 @@ app.get('/info/:itemId', function(req, res) {
     if(err) res.sendStatus(err);
     res.send(body);
   });
-})
+});
 
 if(!require.main.loaded) {
   var server = app.listen(8080);

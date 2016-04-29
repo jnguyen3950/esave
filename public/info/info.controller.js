@@ -6,9 +6,11 @@ function info($http, Info) {
   var vm = this;
 
   vm.detail = function() {
-    var myItem = Info.currentItem(141971858834);
+    currentRoute = window.location.hash;
+    var itemId = currentRoute.substring(7, currentRoute.length);
+    var myItem = Info.currentItem(itemId);
     myItem.then(function(result) {
-      console.log(result);
+      vm.item = result.data;
     });
   }
 }
