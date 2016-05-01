@@ -1,7 +1,17 @@
-<h1>Here</h1>
+<div ng-init="info.detail(); info.updatePicture(info.item.Item.PictureURL[0])">
 
-<button ng-click="info.detail()">Click</button>
+  <div class="col-md-8">
+    <div class="row" ng-mouseover="style={'height':'450px','width':'800px'}" ng-mouseleave="style={'height':'300px','width':'488px'}">
+      <!-- <img class="text-center" ng-style="style" style="height:300px;width:480px" ng-src="{{info.currentPicture(info.item.Item.PictureURL[0])}}"> -->
+      <img class="text-center" ng-style="style" style="height:300px;width:488px" ng-src="{{info.currentPicture}}">
+    </div>
+    <div class="row">
+      <span ng-repeat="picture in info.item.Item.PictureURL">
+          <img ng-mouseover="info.updatePicture(picture)" class="text-center" style="height:100px;width:160px" ng-src="{{picture}}">
+      </span>
+    </div>
+  </div>
+  <div class="col-md-4">
 
-<div>
-  {{info.item}}
+  </div>
 </div>

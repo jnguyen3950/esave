@@ -11,6 +11,11 @@ function info($http, Info) {
     var myItem = Info.currentItem(itemId);
     myItem.then(function(result) {
       vm.item = result.data;
+      console.log(vm.item);
     });
+  }
+
+  vm.updatePicture = function(source) {
+    vm.currentPicture = source;
   }
 }
