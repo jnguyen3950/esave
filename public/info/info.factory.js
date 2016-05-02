@@ -11,7 +11,7 @@ function info($http) {
   function insertCategory(itemId, categoryId) {
     this.itemId = itemId;
     this.categoryId = categoryId;
-    $http.post('http://localhost:8080/add/' + this.itemId + '/' + this.categoryId);
+    $http.post('http://localhost:8080/mongo/create/' + this.itemId + '/' + this.categoryId);
   }
 
   return {

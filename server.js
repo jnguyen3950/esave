@@ -76,17 +76,36 @@ app.get('/info/:itemId', function(req, res) {
   });
 });
 
-app.post('/add/:itemId/:categoryId', function(req, res) {
+app.get('/mongo/read/', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if(err) res.sendStatus(err);
+    else {
+      readDocument(db, function(docs) {
+        db.close();
+        res.send(docs);
+      });
+    }
+  });
+});
+
+app.post('/mongo/create/:itemId/:categoryId', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if(err) res.sendStatus(err);
     else {
       insertDocument(db, req.params.itemId, req.params.categoryId, function() {
         db.close();
-      })
+      });
     }
     res.send();
   });
 });
+
+var readDocument = function(db, callback) {
+  var collection = db.collection('esave');
+  collection.find({}).toArray(function(error, docs) {
+    callback(docs);
+  });
+}
 
 var insertDocument = function(db, itemId, categoryId, callback) {
   var collection = db.collection('esave');
