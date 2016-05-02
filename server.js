@@ -16,13 +16,13 @@ var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
 app.use(express.static('./public/'));
 
 app.get('/greeting/:categoryId', function(req, res) {
-  if(req.params.itemId == undefined) res.sendStatus(404);
+  if(req.params.categoryId == undefined) res.sendStatus(404);
   else {
     request('http://svcs.ebay.com/services/search/FindingService/v1?'
    + 'OPERATION-NAME=findItemsByCategory&'
    + 'SERVICE-VERSION=1.0.0&'
    + 'SECURITY-APPNAME=' + appID
-   + '&RESPONSE-DATA-FORMAT=XML&'
+   + '&RESPONSE-DATA-FORMAT=JSON&'
    + 'REST-PAYLOAD&'
    + 'categoryId=19167&'
    + 'buyerPostalCode=92660&'
