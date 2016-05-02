@@ -15,7 +15,7 @@ var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
 
 app.use(express.static('./public/'));
 
-app.get('/greeting/:itemId', function(req, res) {
+app.get('/greeting/:categoryId', function(req, res) {
   if(req.params.itemId == undefined) res.sendStatus(404);
   else {
     request('http://svcs.ebay.com/services/search/FindingService/v1?'
@@ -76,11 +76,11 @@ app.get('/info/:itemId', function(req, res) {
   });
 });
 
-app.post('/add/:itemId', function(req, res) {
+app.post('/add/:itemId/:categoryId', function(req, res) {
   MongoClient.connect(url, function(err, db) {
     if(err) res.sendStatus(err);
     else {
-      insertDocument(db, req.params.itemId, function() {
+      insertDocument(db, req.params.itemId, req.params.categoryId, function() {
         db.close();
       })
     }
@@ -88,10 +88,9 @@ app.post('/add/:itemId', function(req, res) {
   });
 });
 
-var insertDocument = function(db, itemId, callback) {
+var insertDocument = function(db, itemId, categoryId, callback) {
   var collection = db.collection('esave');
-  collection.insert({itemId: itemId}), function(err, result) {
-    console.log("Inserting");
+  collection.insert({itemId: itemId, categoryId: categoryId}), function(err, result) {
     callback(result);
   }
 }

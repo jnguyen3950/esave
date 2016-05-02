@@ -4,15 +4,14 @@ app.controller('infoController', info);
 
 function info($http, Info) {
   var vm = this;
+  currentRoute = window.location.hash;
+  var itemId = currentRoute.substring(7, currentRoute.length);
 
   vm.detail = function() {
-    currentRoute = window.location.hash;
-    var itemId = currentRoute.substring(7, currentRoute.length);
     var myItem = Info.currentItem(itemId);
-    Info.choose(itemId);
     myItem.then(function(result) {
       vm.item = result.data;
-      console.log(vm.item);
+      vm.choose(vm.item.Item.PrimaryCategoryID);
     });
   }
 
@@ -20,7 +19,8 @@ function info($http, Info) {
     vm.currentPicture = source;
   }
 
-  vm.choose = function(itemID) {
-
+  vm.choose = function(categoryId) {
+    this.categoryId = categoryId;
+    Info.insertCategory(itemId, this.categoryId);
   }
 }
