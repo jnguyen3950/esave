@@ -15,6 +15,26 @@ var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
 
 app.use(express.static('./public/'));
 
+app.get('/greeting/:itemId', function(req, res) {
+  if(req.params.itemId == undefined) res.sendStatus(404);
+  else {
+    request('http://svcs.ebay.com/services/search/FindingService/v1?'
+   + 'OPERATION-NAME=findItemsByCategory&'
+   + 'SERVICE-VERSION=1.0.0&'
+   + 'SECURITY-APPNAME=' + appID
+   + '&RESPONSE-DATA-FORMAT=XML&'
+   + 'REST-PAYLOAD&'
+   + 'categoryId=19167&'
+   + 'buyerPostalCode=92660&'
+   + 'itemFilter.name=MaxDistance&'
+   + 'itemFilter.value=25&'
+   + 'paginationInput.entriesPerPage=10', function(err, response, body) {
+     if(err) res.sendStatus(err);
+     res.send(body);
+   })
+  }
+});
+
 app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice', function(req, res) {
   if(req.params.term == undefined) res.sendStatus(404);
   else {
