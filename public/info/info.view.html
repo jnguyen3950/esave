@@ -1,26 +1,63 @@
 <div ng-init="info.detail()">
   <div ng-init="info.updatePicture()">
-    {{info.item}}
   </div>
-  <div class="col-md-8">
+  <div class="col-md-6">
     <div class="row" >
-      <img class="text-center" ng-mouseover="style={'height':'600px','width':'600px'}" ng-mouseleave="style={'height':'400px','width':'400px'}" ng-style="style" ng-src="{{info.currentPicture}}" style="height:400px;width:400px">
+      <img class="text-center" ng-mouseover="style={'height':'550px','width':'550px'}" ng-mouseleave="style={'height':'400px','width':'400px'}" ng-style="style" ng-src="{{info.currentPicture}}" style="height:400px;width:400px">
     </div>
     <div class="row">
       <span ng-repeat="picture in info.item.Item.PictureURL">
-          <img class="text-center" ng-mouseover="info.updatePicture(picture)" style="height:100px;width:100px" ng-src="{{picture}}">
+        <img ng-mouseover="info.updatePicture(picture)" style="height:100px;width:100px" ng-src="{{picture}}">
       </span>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>{{info.item.Item.Title}}</strong>
       </div>
       <div class="panel-body">
-        <p><strong>Price:</strong> $
-          <span class="red">{{info.item.Item.ConvertedCurrentPrice.Value}}</span>
+        <h4>Item Description</h4>
+        <p><strong>Price:</strong>
+          <span class="red"> $ {{info.item.Item.ConvertedCurrentPrice.Value}}</span>
         </p>
+        <p><strong>Quantity: </strong>
+          <span>{{info.item.Item.Quantity}}</span>
+        </p>
+        <p><strong>Location: </strong>
+          <span>{{info.item.Item.Location}}</span>
+        </p>
+        <p><strong>Postal Code: </strong>
+          <span>{{info.item.Item.PostalCode}}</span>
+        </p>
+        <hr>
+        <h4>Seller Detail</h4>
+        <p><strong>Seller: </strong>
+          <span>{{info.item.Item.Seller.UserID}}</span>
+        </p>
+        <p><strong>Score: </strong>
+          <span>{{info.item.Item.Seller.FeedbackScore}}</span>
+        </p>
+        <hr>
+        <h4>Return Policy</h4>
+        <p><strong>Policy: </strong>
+          <span>{{info.item.Item.ReturnPolicy.ReturnsAccepted}}</span>
+        </p>
+        <p><strong>Type: </strong>
+          <span>{{info.item.Item.ReturnPolicy.Refund}}</span>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <strong>
+            <div class="col-md-10">
+              Pick this item up yourself, you may save shipping cost of:
+            </div>
+            <div class="col-md-2">
+              <span class="red">${{info.item.Item.ShippingCostSummary.ShippingServiceCost.Value}}</span>
+            </div>
+          </strong>
+        </div>
       </div>
     </div>
   </div>

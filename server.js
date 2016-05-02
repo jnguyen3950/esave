@@ -36,9 +36,9 @@ app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice', function(req, res) {
 });
 
 app.get('/info/:itemId', function(req, res) {
-  console.log(req.params.itemId);
   var queryParam = {
-    'itemId': req.params.itemId
+    'itemId': req.params.itemId,
+    'IncludeSelector': 'Details, ShippingCosts'
   }
 
   request('http://open.api.ebay.com/shopping?'
