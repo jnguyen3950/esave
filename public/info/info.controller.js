@@ -9,6 +9,7 @@ function info($http, Info) {
     currentRoute = window.location.hash;
     var itemId = currentRoute.substring(7, currentRoute.length);
     var myItem = Info.currentItem(itemId);
+    Info.choose(itemId);
     myItem.then(function(result) {
       vm.item = result.data;
       console.log(vm.item);
@@ -17,5 +18,9 @@ function info($http, Info) {
 
   vm.updatePicture = function(source) {
     vm.currentPicture = source;
+  }
+
+  vm.choose = function(itemID) {
+
   }
 }

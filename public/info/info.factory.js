@@ -4,10 +4,17 @@ app.factory('Info', info);
 
 function info($http) {
   function currentItem(itemId) {
-    this.itemId = itemId || 141971858834;
+    this.itemId = itemId;
     return $http.get('http://localhost:8080/info/' + itemId);
   }
+
+  function choose(itemId) {
+    this.itemId = itemId;
+    $http.post('http://localhost:8080/add/' + itemId);
+  }
+
   return {
-    currentItem: currentItem
+    currentItem: currentItem,
+    choose: choose
   }
 }

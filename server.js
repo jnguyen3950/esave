@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var querystring = require('querystring');
 var request = require('request');
 var _ = require('underscore');
+var MongoClient = require('mongodb').MongoClient;
+
+var url = 'mongodb://localhost/esave';
 
 var appID = "JustinNg-Loclist-PRD-04d8cb72c-0a1a082c";
 var devID = "6ae2db01-f633-4ac3-8294-c4c121e98ea2";
@@ -52,6 +55,26 @@ app.get('/info/:itemId', function(req, res) {
     res.send(body);
   });
 });
+
+app.post('/add/:itemId', function(req, res) {
+  MongoClient.connect(url, function(err, db) {
+    if(err) res.sendStatus(err);
+    else {
+      insertDocument(db, req.params.itemId, function() {
+        db.close();
+      })
+    }
+    res.send();
+  });
+});
+
+var insertDocument = function(db, itemId, callback) {
+  var collection = db.collection('esave');
+  collection.insert({itemId: itemId}), function(err, result) {
+    console.log("Inserting");
+    callback(result);
+  }
+}
 
 if(!require.main.loaded) {
   var server = app.listen(8080);
