@@ -12,14 +12,14 @@ var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
 
 app.use(express.static('./public/'));
 
-app.get('/search/:term', function(req, res) {
+app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice', function(req, res) {
   if(req.params.term == undefined) res.sendStatus(404);
   else {
     var queryParam = {
       'keywords': req.params.term,
-      'buyerPostalCode': 92660,
+      'buyerPostalCode': req.params.zip,
       'itemFilter.name': 'MaxDistance',
-      'itemFilter.value': 25,
+      'itemFilter.value': req.params.distance,
       'paginationInput.entriesPerPage': 10,
       'paginationInput.pageNumber': 1
     }
@@ -29,10 +29,28 @@ app.get('/search/:term', function(req, res) {
     + '&SECURITY-APPNAME=' + appID
     + '&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&'
     + querystring.stringify(queryParam), function(err, response, body) {
-      if(err) res.send(err);
+      if(err) res.sendStatus(err);
       res.send(body);
     });
   }
+});
+
+app.get('/info/:itemId', function(req, res) {
+  var queryParam = {
+    'itemId': req.params.itemId,
+    'IncludeSelector': 'Details, ShippingCosts'
+  }
+
+  request('http://open.api.ebay.com/shopping?'
+  + 'callname=GetSingleItem&'
+  + 'responseencoding=JSON&'
+  + 'appid=' + appID
+  + '&siteid=0&'
+  + 'version=515&'
+  + querystring.stringify(queryParam), function(err, response, body) {
+    if(err) res.sendStatus(err);
+    res.send(body);
+  });
 });
 
 if(!require.main.loaded) {
