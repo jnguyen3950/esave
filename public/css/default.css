@@ -22,3 +22,8 @@ label {
 .red {
   color: red;
 }
+
+.thumbImg {
+  width: 117px;
+  height: 117px;
+}
