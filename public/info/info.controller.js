@@ -12,6 +12,7 @@ function info($http, Info) {
     myItem.then(function(result) {
       vm.item = result.data;
       console.log(vm.item);
+      console.log(vm.item.Item.PictureURL[0]);
     });
   }
 
