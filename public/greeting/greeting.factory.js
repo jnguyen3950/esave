@@ -4,8 +4,10 @@ app.factory('Greeting', greeting);
 
 function greeting($http) {
   function relatedItems(categoryId) {
+    currentURL = window.location.origin;
+
     this.categoryId = categoryId;
-    return $http.get("http://localhost:8080/greeting/" + categoryId);
+    return $http.get(currentURL + "/greeting/" + categoryId);
   }
   return {
     relatedItems: relatedItems

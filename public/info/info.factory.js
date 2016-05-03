@@ -4,14 +4,15 @@ app.factory('Info', info);
 
 function info($http) {
   function currentItem(itemId) {
+    currentURL = window.location.origin;
     this.itemId = itemId;
-    return $http.get('http://localhost:8080/info/' + this.itemId);
+    return $http.get(currentURL + '/info/' + this.itemId);
   }
 
   function insertCategory(itemId, categoryId) {
     this.itemId = itemId;
     this.categoryId = categoryId;
-    $http.post('http://localhost:8080/mongo/create/' + this.itemId + '/' + this.categoryId);
+    $http.post(currentURL + '/mongo/create/' + this.itemId + '/' + this.categoryId);
   }
 
   return {
