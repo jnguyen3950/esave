@@ -1,0 +1,18 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1>eSave</h1>
+    <a id="searchResult" ng-href="/#/search">Show</a>
+  </div>
+</div>
+
+<div ng-repeat="list in greeting.bigList">
+  <div class="row">
+    <div ng-repeat="item in list">
+      <div class="col-lg-2 col-md-3 col-xm-6">
+        <a ng-href="" class="thumbnail">
+          <img class="img-responsive" ng-src="{{item.galleryURL[0]}}" alt="related items">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,18 @@ app.factory('Info', info);
 
 function info($http) {
   function currentItem(itemId) {
-    this.itemId = itemId || 141971858834;
-    return $http.get('http://localhost:8080/info/' + itemId);
+    this.itemId = itemId;
+    return $http.get('http://localhost:8080/info/' + this.itemId);
   }
+
+  function insertCategory(itemId, categoryId) {
+    this.itemId = itemId;
+    this.categoryId = categoryId;
+    $http.post('http://localhost:8080/mongo/create/' + this.itemId + '/' + this.categoryId);
+  }
+
   return {
-    currentItem: currentItem
+    currentItem: currentItem,
+    insertCategory: insertCategory
   }
 }

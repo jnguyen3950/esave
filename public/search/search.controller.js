@@ -6,7 +6,7 @@ function search($http, Search) {
   var vm = this;
 
   vm.newSearch = function(term, zip, dist, minPrice, maxPrice) {
-    this.zip = zip || 92660;
+    this.zip = zip;
     this.dist = dist || 25;
     this.minPrice = minPrice || 0;
     this.maxPrice = maxPrice || 100;
