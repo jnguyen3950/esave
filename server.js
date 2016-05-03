@@ -24,8 +24,8 @@ app.get('/greeting/:categoryId', function(req, res) {
    + 'SECURITY-APPNAME=' + appID
    + '&RESPONSE-DATA-FORMAT=JSON&'
    + 'REST-PAYLOAD&'
-   + 'categoryId=19167&'
-   + 'buyerPostalCode=92660&'
+   + 'categoryId=' + req.params.categoryId
+   + '&buyerPostalCode=92660&'
    + 'itemFilter.name=MaxDistance&'
    + 'itemFilter.value=25&'
    + 'paginationInput.entriesPerPage=6', function(err, response, body) {

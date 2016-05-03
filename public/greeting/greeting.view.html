@@ -5,14 +5,14 @@
   </div>
 </div>
 
-  <div ng-repeat="item in greeting.bigList">
-    <!-- <div ng-repeat="item in list"> -->
+<div ng-repeat="list in greeting.bigList">
+  <div class="row">
+    <div ng-repeat="item in list">
       <div class="col-lg-2 col-md-3 col-xm-6">
         <a ng-href="" class="thumbnail">
-          <!-- {{item}} -->
-          <!-- {{item.galleryURL[0]}} -->
-          <img class="thumbImg" ng-src="{{item.galleryURL[0]}}" alt="related items">
+          <img class="img-responsive" ng-src="{{item.galleryURL[0]}}" alt="related items">
         </a>
       </div>
-    <!-- </div> -->
+    </div>
   </div>
+</div>

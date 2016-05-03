@@ -23,7 +23,6 @@ label {
   color: red;
 }
 
-.thumbImg {
-  width: 117px;
-  height: 117px;
+.thumbnail {
+  height: 200px;
 }
