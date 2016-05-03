@@ -12,8 +12,8 @@ function search($http, Search) {
     this.maxPrice = maxPrice || 100;
     var promise = new Promise(function(resolve, reject) {
       window.navigator.geolocation.getCurrentPosition(function(pos){
-        $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
-          $http.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
+        $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
+          $http.get('https://maps.googleapis.com/maps/api/geocode/json?latlng='+pos.coords.latitude+','+pos.coords.longitude+'&sensor=true').then(function(res){
             var zipcode = res.data.results[0].address_components[6].long_name;
             vm.zipcode = zipcode;
             resolve(zipcode);

@@ -7,7 +7,7 @@ var request = require('request');
 var _ = require('underscore');
 var MongoClient = require('mongodb').MongoClient;
 
-var url = 'mongodb://localhost/esave';
+var url = 'mongodb://jnguyen3950:jnguyen3950@ds013232.mlab.com:13232/esave';
 
 var appID = "JustinNg-Loclist-PRD-04d8cb72c-0a1a082c";
 var devID = "6ae2db01-f633-4ac3-8294-c4c121e98ea2";
@@ -113,6 +113,10 @@ var insertDocument = function(db, itemId, categoryId, callback) {
     callback(result);
   }
 }
+
+// if(!require.main.loaded) {
+//   var server = app.listen(process.env.PORT || 8080);
+// }
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
