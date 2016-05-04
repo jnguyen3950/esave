@@ -1,68 +1,77 @@
-<h1>eSave</h1>
+<div ng-init="search.init(); start = false">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form>
+        <div class="input-group">
+          <input id="newTerm" ng-model="term" type="text" class="form-control" placeholder="Item Name">
+          <span class="input-group-btn">
+            <button id="searchButton" ng-click="search.newSearch(term, zip, dist, min, max); start = true" class="btn btn-default btn-success">Search</button>
+          </span>
+        </div>
 
-<form>
-  <div class="input-group">
-    <input id="newTerm" ng-model="term" type="text" class="form-control" placeholder="Item Name">
-    <span class="input-group-btn">
-      <button id="searchButton" ng-click="search.newSearch(term, zip, dist, min, max)" class="btn btn-default btn-success">Search</button>
-    </span>
+        <h4>Your current location: {{search.currentPlace}}</h4>
+        <hr>
+
+        <div class="col-md-6 col-sm-10">
+          <div class="form-group row">
+            <label for="zip" class="col-md-3 form-control-label">Zipcode</label>
+            <div class="col-md-7">
+              <input ng-model="zip" type="text" class="form-control" id="zip" placeholder="5 digits (Optional)">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="dist" class="col-md-3 form-control-label">Distance</label>
+            <div class="col-md-7">
+              <input ng-model="dist" type="text" class="form-control" id="dist" placeholder="in mileage">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-10">
+          <div class="form-group row">
+            <label for="minPrice" class="col-md-3 form-control-label">Min Price</label>
+            <div class="col-md-7">
+              <input ng-model="min" type="text" class="form-control" id="minPrice" placeholder="$">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="maxPrice" class="col-md-3 form-control-label">Max Price</label>
+            <div class="col-md-7">
+              <input ng-model="max" type="text" class="form-control" id="maxPrice" placeholder="$">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
-  <h4>Your current zipcode: {{search.zipcode}}</h4>
-
-  <div class="col-md-6">
-    <div class="form-group row">
-      <label for="zip" class="col-md-3 form-control-label">Zipcode</label>
-      <div class="col-md-7">
-        <input ng-model="zip" type="text" class="form-control" id="zip" placeholder="5 digits (Optional)">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="dist" class="col-md-3 form-control-label">Distance</label>
-      <div class="col-md-7">
-        <input ng-model="dist" type="text" class="form-control" id="dist" placeholder="in mileage">
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="form-group row">
-      <label for="minPrice" class="col-md-3 form-control-label">Min Price</label>
-      <div class="col-md-7">
-        <input ng-model="min" type="text" class="form-control" id="minPrice" placeholder="$">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="maxPrice" class="col-md-3 form-control-label">Max Price</label>
-      <div class="col-md-7">
-        <input ng-model="max" type="text" class="form-control" id="maxPrice" placeholder="$">
-      </div>
-    </div>
-  </div>
-</form>
-
-<div ng-repeat="item in search.list">
-  <div class="media">
-    <div class="media-left media-middle">
-      <div>
-        <a ng-href="{{search.createDynamicURL(item)}}">
-          <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
-        </a>
-      </div>
-    </div>
-    <div class="media-body">
-      <h4 class="media-heading">{{item.title[0]}}</h4>
-      <div class="col-md-4">
-        <h4>Price:
-          <span class="red">${{item.sellingStatus[0].currentPrice[0].__value__}}</span>
-        </h4>
-        <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
-        <h4>Condition: {{item.condition[0].conditionDisplayName[0]}}</h4>
-      </div>
-      <div class="col-md-8">
-        <h4>Pick this up yourself, you may save shipping cost of:</h4>
-        <h2><span class="red">${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</span><h2>
+  <div ng-show="start">
+    <h5>Showing items near: <span class="darkblue">{{search.currentSearch}}</span></h5>
+    <div ng-repeat="item in search.list">
+      <div class="media">
+        <div class="media-left media-middle">
+          <div>
+            <a ng-href="{{search.createDynamicURL(item)}}">
+              <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
+            </a>
+          </div>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">{{item.title[0]}}</h4>
+          <div class="col-md-4">
+            <h4>Price:
+              <span class="red">${{item.sellingStatus[0].currentPrice[0].__value__}}</span>
+            </h4>
+            <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
+            <h4>Condition: {{item.condition[0].conditionDisplayName[0]}}</h4>
+          </div>
+          <div class="col-md-8">
+            <h4>Pick this up yourself, you may save shipping cost:</h4>
+            <h2><span class="red">${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</span></h2>
+          </div>
         </div>
       </div>
+      <hr>
     </div>
   </div>
+</div>
