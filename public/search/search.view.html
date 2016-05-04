@@ -8,10 +8,8 @@
             <button id="searchButton" ng-click="search.newSearch(term, zip, dist, min, max); start = true" class="btn btn-default btn-success">Search</button>
           </span>
         </div>
-
         <h4>Your current location: {{search.currentPlace}}</h4>
         <hr>
-
         <div class="col-md-6 col-sm-10">
           <div class="form-group row">
             <label for="zip" class="col-md-3 form-control-label">Zipcode</label>
@@ -45,33 +43,35 @@
     </div>
   </div>
 
-  <div ng-show="start">
-    <h5>Showing items near: <span class="darkblue">{{search.currentSearch}}</span></h5>
-    <div ng-repeat="item in search.list">
-      <div class="media">
-        <div class="media-left media-middle">
-          <div>
-            <a ng-href="{{search.createDynamicURL(item)}}">
-              <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
-            </a>
+  <div class="panel panel-default" ng-show="start">
+    <div class="panel-body">
+      <h4>Showing items near: <span class="darkblue">{{search.currentSearch}}</span></h4>
+      <div ng-repeat="item in search.list">
+        <hr>
+        <div class="media">
+          <div class="media-left media-middle">
+            <div>
+              <a ng-href="{{search.createDynamicURL(item)}}">
+                <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading">{{item.title[0]}}</h4>
-          <div class="col-md-4">
-            <h4>Price:
-              <span class="red">${{item.sellingStatus[0].currentPrice[0].__value__}}</span>
-            </h4>
-            <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
-            <h4>Condition: {{item.condition[0].conditionDisplayName[0]}}</h4>
-          </div>
-          <div class="col-md-8">
-            <h4>Pick this up yourself, you may save shipping cost:</h4>
-            <h2><span class="red">${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</span></h2>
+          <div class="media-body">
+            <h4 class="media-heading">{{item.title[0]}}</h4>
+            <div class="col-md-4">
+              <h4>Price:
+                <span class="red">${{item.sellingStatus[0].currentPrice[0].__value__}}</span>
+              </h4>
+              <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
+              <h4>Condition: {{item.condition[0].conditionDisplayName[0]}}</h4>
+            </div>
+            <div class="col-md-8">
+              <h4>Pick this up yourself, you may save shipping cost:</h4>
+              <h2><span class="red">${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</span></h2>
+            </div>
           </div>
         </div>
       </div>
-      <hr>
     </div>
   </div>
 </div>

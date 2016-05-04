@@ -28,6 +28,7 @@ function search($http, Search) {
     var items = Search.items(term, this.zip, this.dist, this.minPrice, this.maxPrice);
     items.then(function(result) {
       vm.list = result.data.findItemsByKeywordsResponse[0].searchResult[0].item;
+      console.log(result.data);
     });
   }
 

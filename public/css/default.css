@@ -1,28 +1,104 @@
 body {
-  background-color: lightgrey;
+  background-color: lightblue;
 }
 
 img {
-  width: 200px;
+  width: 250px;
+  margin: auto;
+  vertical-align: middle;
 }
 
 label {
   margin-top: 5px;
 }
 
-.media {
-  border: solid black 2px;
-  border-radius: 5px;
+@media (max-width: 767px) {
+  .thumbnail-img {
+    height: 300px;
+    overflow: hidden;
+  }
 }
 
-.addCart {
-  float: right;
+@media (min-width: 768px) {
+  .thumbnail-img {
+    height: 250px;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 992px) {
+  .thumbnail-img {
+    height: 140px;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1200px) {
+  .thumbnail-img {
+    height: 150px;
+    overflow: hidden;
+  }
+}
+
+
+.media {
+  background-color: white;
+  border: 2px solid lightgrey;
+}
+
+.media-object {
+  width: 250px;
+  height: 250px;
+  border: 2px solid lightgrey;
+}
+
+.thumbnail {
+  background-color: #436270;
+}
+
+.thumbnail:hover {
+  box-shadow: inset 0px 0px 25px rgba(255,255,255,1);
+}
+
+.caption {
+  background-color: white;
+}
+
+
+.lg-info-img {
+  width: 650px;
+  height: auto;
+  padding: 5px 5px 5px 5px;
+  z-index: 1;
+}
+
+.sm-info-img {
+  height: 100px;
+  width: 100px;
+  padding: 1px 1px 1px 1px;
+}
+
+.sm-info-img:hover {
+  border: 2px solid black;
 }
 
 .red {
   color: red;
 }
 
-.thumbnail {
-  height: 200px;
+.blue {
+  color: blue;
+}
+
+.darkblue {
+  color: darkblue;
+}
+
+.right {
+  display: block;
+  float: right;
+}
+
+.clear {
+  clear: both;
 }
