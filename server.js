@@ -41,8 +41,12 @@ app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice', function(req, res) {
     var queryParam = {
       'keywords': req.params.term,
       'buyerPostalCode': req.params.zip,
-      'itemFilter.name': 'MaxDistance',
-      'itemFilter.value': req.params.distance,
+      'itemFilter(0).name': 'MaxDistance',
+      'itemFilter(0).value': req.params.distance,
+      'itemFilter(1).name': 'MinPrice',
+      'itemFilter(1).value': req.params.minPrice,
+      'itemFilter(2).name': 'MaxPrice',
+      'itemFilter(2).value': req.params.maxPrice,
       'paginationInput.entriesPerPage': 10,
       'paginationInput.pageNumber': 1
     }

@@ -11,7 +11,6 @@ function greeting($http, Greeting) {
   xhr.send();
   xhr.addEventListener('load', function() {
     var response = JSON.parse(xhr.responseText);
-
     for (var i = response.length - 1; i >= 0 ; i--) {
       var promise = Greeting.relatedItems(response[i].categoryId);
       promise.then(function(result) {

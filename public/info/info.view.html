@@ -1,12 +1,14 @@
 <div ng-init="info.detail()">
   <div class="col-md-6">
-    <div class="row" >
-      <img class="text-center" ng-mouseover="style={'height':'550px','width':'550px'}" ng-mouseleave="style={'height':'400px','width':'400px'}" ng-style="style" ng-src="{{info.currentPicture}}" style="height:400px;width:400px">
-    </div>
     <div class="row">
       <span ng-repeat="picture in info.item.Item.PictureURL">
-        <img ng-mouseover="info.updatePicture(picture)" style="height:100px;width:100px" ng-src="{{picture}}">
+        <img class="sm-info-img" ng-mouseover="info.updatePicture(picture)" ng-src="{{picture}}">
       </span>
+    </div>
+    <div class="row">
+      <div class="">
+        <img class="img-responsive lg-info-img" ng-src="{{info.currentPicture}}">
+      </div>
     </div>
   </div>
   <div class="col-md-6">
@@ -59,5 +61,4 @@
       </div>
     </div>
   </div>
-</div>
 </div>
