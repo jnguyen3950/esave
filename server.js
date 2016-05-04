@@ -114,13 +114,8 @@ var insertDocument = function(db, itemId, categoryId, callback) {
   }
 }
 
-// if(!require.main.loaded) {
-//   var server = app.listen(process.env.PORT || 8080);
-// }
-
-var port = process.env.PORT || 8080;
-app.listen(port, function() {
- console.log("listening on port " + port);
-});
+if(!require.main.loaded) {
+  var server = app.listen(process.env.PORT || 8080);
+}
 
 module.exports = app;
