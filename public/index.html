@@ -14,16 +14,14 @@
         <div class="navbar-header">
           <a class="navbar-brand" ng-href="#">eSave</a>
         </div>
-        <div class="navbar-form navbar-right" ng-show="showNav">
-          <div class="input-group">
-            <input type="text" class="form-control" ng-model="term" placeholder="Item Name">
-            <span class="input-group-btn">
-              <a ng-href="/#/search/{{term}}">
-                <button class="btn btn-default btn-success" ng-click="showNav = false">Search</button>
-              </a>
-            </span>
+        <nav class="navbar-form navbar-right" ng-show="showNav" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" ng-model="term" placeholder="Item name">
+            <a ng-href="/#/search/{{term}}">
+              <button class="btn btn-default btn-success" ng-click="showNav = false">Search</button>
+            </a>
           </div>
-        </div>
+        </nav>
       </div>
     </nav>
   </div>
@@ -36,7 +34,6 @@
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="app.js"></script>
-  <script src="navbar/navbar.controller.js"></script>
   <script src="greeting/greeting.controller.js"></script>
   <script src="greeting/greeting.factory.js"></script>
   <script src="search/search.controller.js"></script>
