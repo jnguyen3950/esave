@@ -7,6 +7,11 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: 'searchController',
     controllerAs: 'search'
   })
+  .when('/search', {
+    templateUrl: 'search/search.view.html',
+    controller: 'searchController',
+    controllerAs: 'search'
+  })
   .when('/info/:itemId', {
     templateUrl: 'info/info.view.html',
     controller: 'infoController',
