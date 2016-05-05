@@ -1,5 +1,5 @@
 body {
-  background-color: lightblue;
+  background-color: rgba(230, 230, 230, 0.5);
 }
 
 img {
@@ -40,6 +40,11 @@ label {
   }
 }
 
+.jumbotron {
+  background-image: url('../img/jumbotron-img.jpg');
+  background-size: cover;
+  color: white;
+}
 
 .media {
   background-color: white;
@@ -53,7 +58,7 @@ label {
 }
 
 .thumbnail {
-  background-color: #436270;
+  background-color: #CCCCCC;
 }
 
 .thumbnail:hover {
@@ -63,7 +68,6 @@ label {
 .caption {
   background-color: white;
 }
-
 
 .lg-info-img {
   width: 650px;
@@ -101,4 +105,14 @@ label {
 
 .clear {
   clear: both;
+}
+
+.shade {
+  position: relative;
+  clear: both;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#searchBar {
+    margin-bottom: 15px;
 }
