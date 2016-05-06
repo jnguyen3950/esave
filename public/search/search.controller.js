@@ -24,6 +24,7 @@ function search($http, Search) {
         });
       });
     });
+
     promise.then(function(value) {
       vm.term = categoryText || "Antiques";
       vm.zip = value;
@@ -62,6 +63,30 @@ function search($http, Search) {
 
   vm.switch = function(value) {
     return vm.loading;
+  }
+
+  vm.sortShippingAsc = function() {
+    vm.list.sort(function(a, b) {
+      return a.shippingInfo[0].shippingServiceCost[0].__value__ - b.shippingInfo[0].shippingServiceCost[0].__value__;
+    });
+  }
+
+  vm.sortShippingDes = function() {
+    vm.list.sort(function(a, b) {
+      return b.shippingInfo[0].shippingServiceCost[0].__value__ - a.shippingInfo[0].shippingServiceCost[0].__value__;
+    });
+  }
+
+  vm.sortPriceAsc = function() {
+    vm.list.sort(function(a, b) {
+      return a.sellingStatus[0].currentPrice[0].__value__ - b.sellingStatus[0].currentPrice[0].__value__;
+    });
+  }
+
+  vm.sortPricsDes = function() {
+    vm.list.sort(function(a, b) {
+      return b.sellingStatus[0].currentPrice[0].__value__ - a.sellingStatus[0].currentPrice[0].__value__;
+    });
   }
 
   function search() {

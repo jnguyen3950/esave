@@ -1,4 +1,4 @@
-<div ng-init="search.init(); start = false">
+<div ng-init="search.init(); start = false; sort = false">
   <div class="panel panel-default">
     <div class="panel-body">
       <form>
@@ -6,8 +6,8 @@
           <h4>Loading your location</h4>
           <h4>(Please enable your location service or provide zipcode below)</h4>
         </div>
-        <div>
-          <h4 ng-show="search.switch() == false">Your current location:</h4>
+        <div ng-show="search.switch() == false">
+          <h4>Your current location:</h4>
           <h4 class="blue">{{search.currentPlace}}</h4>
         </div>
         <hr>
@@ -55,6 +55,21 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <h3>Showing result for: <span class="blue">{{search.term}}</span> near <span class="blue">{{search.currentSearch}}</span></h3>
+        <div class="panel-body">
+          <h4>Sort by:</span></h4>
+          <div class="col-md-6">
+            <div class="btn-group-vertical" style="width:100%">
+              <button ng-click="search.sortShippingAsc()" class="btn btn-default stretch" title="Shipping Lowest First"><span class="fa fa-truck"></span><span class="fa fa-sort-amount-asc"></span></button>
+              <button ng-click="search.sortShippingDes()" class="btn btn-default stretch" title="Shipping Highest First"><span class="fa fa-truck"></span><span class="fa fa-sort-amount-desc"></span></button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="btn-group-vertical" style="width:100%">
+              <button ng-click="search.sortPriceAsc()" class="btn btn-default stretch" title="Price Lowest First"><span class="fa fa-usd"> </span><span class="fa fa-sort-amount-asc"></span></button>
+              <button ng-click="search.sortPricsDes()" class="btn btn-default stretch" title="Price Highest First"><span class="fa fa-usd"> </span><span class="fa fa-sort-amount-desc"></span></button>
+            </div>
+          </div>
+        </div>
         <div ng-repeat="item in search.list">
           <hr>
           <div class="media">
