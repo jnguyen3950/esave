@@ -1,8 +1,15 @@
-<div ng-init="search.init(); start = false">
+<div ng-init="search.init(); start = false; sort = false">
   <div class="panel panel-default">
     <div class="panel-body">
       <form>
-        <h4>Your current location: {{search.currentPlace}}</h4>
+        <div ng-show="search.switch() == true">
+          <h4>Loading your location</h4>
+          <h4>(Please enable your location service or provide zipcode below)</h4>
+        </div>
+        <div ng-show="search.switch() == false">
+          <h4>Your current location:</h4>
+          <h4 class="blue">{{search.currentPlace}}</h4>
+        </div>
         <hr>
         <div id="searchBar" class="input-group">
           <input id="newTerm" ng-model="term" type="text" class="form-control" placeholder="Item Name">
@@ -10,6 +17,7 @@
             <button id="searchButton" ng-click="search.newSearch(term, zip, dist, min, max)" class="btn btn-default btn-success">Search</button>
           </span>
         </div>
+
         <div class="col-md-6 col-sm-10">
           <div class="form-group row">
             <label for="zip" class="col-md-3 form-control-label">Zipcode</label>
@@ -43,34 +51,56 @@
     </div>
   </div>
 
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <h4>Showing items near: <span class="darkblue">{{search.currentSearch}}</span></h4>
-      <div ng-repeat="item in search.list">
-        <hr>
-        <div class="media">
-          <div class="media-left media-middle">
-            <div>
-              <a ng-href="{{search.createDynamicURL(item)}}">
-                <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
-              </a>
+  <div ng-show="search.switch() == false">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>Showing result for: <span class="blue">{{search.term}}</span> near <span class="blue">{{search.currentSearch}}</span></h3>
+        <div class="panel-body">
+          <h4>Sort by:</span></h4>
+          <div class="col-md-6">
+            <div class="btn-group-vertical" style="width:100%">
+              <button ng-click="search.sortShippingAsc()" class="btn btn-default stretch" title="Shipping Lowest First"><span class="fa fa-truck"></span><span class="fa fa-sort-amount-asc"></span></button>
+              <button ng-click="search.sortShippingDes()" class="btn btn-default stretch" title="Shipping Highest First"><span class="fa fa-truck"></span><span class="fa fa-sort-amount-desc"></span></button>
             </div>
           </div>
-          <div class="media-body">
-            <h4 class="media-heading">{{item.title[0]}}</h4>
-            <div class="col-md-4">
-              <h4>Price:
-                <span class="red">${{item.sellingStatus[0].currentPrice[0].__value__}}</span>
-              </h4>
-              <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
-              <h4>Condition: {{item.condition[0].conditionDisplayName[0]}}</h4>
-            </div>
-            <div class="col-md-8">
-              <h4>Pick this up yourself, you may save shipping cost:</h4>
-              <h2><span class="red">${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</span></h2>
+          <div class="col-md-6">
+            <div class="btn-group-vertical" style="width:100%">
+              <button ng-click="search.sortPriceAsc()" class="btn btn-default stretch" title="Price Lowest First"><span class="fa fa-usd"> </span><span class="fa fa-sort-amount-asc"></span></button>
+              <button ng-click="search.sortPricsDes()" class="btn btn-default stretch" title="Price Highest First"><span class="fa fa-usd"> </span><span class="fa fa-sort-amount-desc"></span></button>
             </div>
           </div>
         </div>
+        <div ng-repeat="item in search.list">
+          <hr>
+          <div class="media">
+            <div class="media-left media-middle">
+              <div>
+                <a ng-href="{{search.createDynamicURL(item)}}">
+                  <img class="media-object" ng-src={{item.galleryURL[0]}} alt="Generic placeholder image">
+                </a>
+              </div>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{item.title[0]}}</h4>
+              <div class="col-md-4">
+                <h4>Price:
+                  <span class="red">${{item.sellingStatus[0].currentPrice[0].__value__}}</span>
+                </h4>
+                <h4>Distance: < <span>{{item.distance[0].__value__}} mi.</span></h4>
+                <h4>Condition: {{item.condition[0].conditionDisplayName[0]}}</h4>
+              </div>
+              <div class="col-md-8">
+                <h4>Pick this up yourself, you may save shipping cost:</h4>
+                <h2><span class="red">${{item.shippingInfo[0].shippingServiceCost[0].__value__}}</span></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="btn-group" role="group">
+        <button ng-click="search.showMore()" class="btn btn-success">Show more</button>
       </div>
     </div>
   </div>

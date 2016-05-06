@@ -12,6 +12,7 @@ function info($http, Info) {
     myItem.then(function(result) {
       vm.item = result.data;
       vm.choose(vm.item.Item.PrimaryCategoryID);
+      vm.updatePicture(vm.item.Item.PictureURL[0]);
     });
   }
 

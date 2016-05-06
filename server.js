@@ -35,7 +35,7 @@ app.get('/greeting/:categoryId', function(req, res) {
   }
 });
 
-app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice', function(req, res) {
+app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice/:page', function(req, res) {
   if(req.params.term == undefined) res.sendStatus(404);
   else {
     var queryParam = {
@@ -47,8 +47,10 @@ app.get('/search/:term/:zip/:distance/:minPrice/:maxPrice', function(req, res) {
       'itemFilter(1).value': req.params.minPrice,
       'itemFilter(2).name': 'MaxPrice',
       'itemFilter(2).value': req.params.maxPrice,
-      'paginationInput.entriesPerPage': 10,
-      'paginationInput.pageNumber': 1
+      'itemFilter(3).name': 'FreeShippingOnly',
+      'itemFilter(3).value': 'false',
+      'paginationInput.entriesPerPage': 30,
+      'paginationInput.pageNumber': req.params.page
     }
 
     request('http://svcs.ebay.com/services/search/FindingService/v1?'
@@ -78,6 +80,19 @@ app.get('/info/:itemId', function(req, res) {
     if(err) res.sendStatus(err);
     res.send(body);
   });
+});
+
+app.get('/userID', function(req, res) {
+  request('http://open.api.ebay.com/shopping?'
+   + 'callname=GetUserProfile&'
+   + 'responseencoding=XML&'
+   + 'appid=' + appID
+   + '&siteid=0&'
+   + 'version=525&'
+   + 'UserID=snackstadium', function(err, response, body) {
+     if(err) res.sendStatus(err);
+     res.send(body);
+   });
 });
 
 app.get('/mongo/read/', function(req, res) {
