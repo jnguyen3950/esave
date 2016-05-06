@@ -13,6 +13,9 @@ function info($http, Info) {
       vm.item = result.data;
       vm.choose(vm.item.Item.PrimaryCategoryID);
       vm.updatePicture(vm.item.Item.PictureURL[0]);
+
+      vm.userEmail = "userEmail@example.org";
+      vm.sellerEmail = vm.item.Item.Seller.UserID + "@example.org";
     });
   }
 
@@ -23,5 +26,8 @@ function info($http, Info) {
   vm.choose = function(categoryId) {
     this.categoryId = categoryId;
     Info.insertCategory(itemId, this.categoryId);
+  }
+
+  vm.submit = function(userEmailText, sellerEmailText, userPrice) {
   }
 }

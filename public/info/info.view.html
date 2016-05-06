@@ -61,4 +61,55 @@
       </div>
     </div>
   </div>
+  <div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <div class="btn-group" role="group">
+      <button ng-click="info.contactSeller()" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modal">Contact Seller</button>
+    </div>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">X</button>
+            <h4 class="modal-title">Contacting {{info.item.Item.Seller.UserID}},</h4>
+          </div>
+
+          <div class="modal-body">
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="inputUserEmail">Your Email</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="inputUserEmail" ng-model="userEmailText" ng-value="info.userEmail" placeholder="youremail@example.org">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label" for="inputSellerEmail">Seller Email</label>
+                <div class="col-sm-9">
+                  <input type="email" class="form-control" id="inputSellerEmail" ng-model="sellerEmailText" ng-value="info.sellerEmail" placeholder="sellemail@example.org">
+                </div>
+              </div>
+              <div>
+              <hr>
+              <h5>Current price: <span class="red">{{info.item.Item.ConvertedCurrentPrice.Value}}</span></h5>
+              <h5>Current Shipping cost: <span class="red">${{info.item.Item.ShippingCostSummary.ShippingServiceCost.Value}}</span></h5>
+              <hr>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-9 control-label" for="negotiatePrice">You want to pick up this item for total of: </label>
+                <div class="col-sm-3">
+                  <input type="number" class="form-control" id="negotiatePrice" ng-model="userPrice" placeholder="$">
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button ng-click="info.submit(userEmailText, sellerEmailText, userPrice)" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
