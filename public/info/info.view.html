@@ -80,13 +80,13 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="inputUserEmail">Your Email</label>
                 <div class="col-sm-9">
-                  <input type="email" class="form-control" id="inputUserEmail" ng-model="userEmailText" ng-value="info.userEmail" placeholder="youremail@example.org">
+                  <input type="email" class="form-control" id="inputUserEmail" ng-model="userEmailText" placeholder="youremail@example.org">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-3 control-label" for="inputSellerEmail">Seller Email</label>
                 <div class="col-sm-9">
-                  <input type="email" class="form-control" id="inputSellerEmail" ng-model="sellerEmailText" ng-value="info.sellerEmail" placeholder="sellemail@example.org">
+                  <input type="email" class="form-control" id="inputSellerEmail" ng-model="sellerEmailText" placeholder="sellemail@example.org">
                 </div>
               </div>
               <div>
@@ -106,7 +106,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button ng-click="info.submit(userEmailText, sellerEmailText, userPrice)" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+            <button ng-click="info.submitEmail(userEmailText, sellerEmailText, userPrice)" type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
           </div>
         </div>
       </div>

@@ -3,9 +3,8 @@ var app = angular.module('esave');
 app.factory('Search', search);
 
 function search($http) {
+  var currentURL = window.location.origin;
   function items(term, zip, dist, minPrice, maxPrice, page) {
-    currentURL = window.location.origin;
-
     this.term = term || "Fashion";
     this.zip = zip;
     this.dist = dist || 25;

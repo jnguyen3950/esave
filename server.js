@@ -99,28 +99,30 @@ app.get('/userID', function(req, res) {
    });
 });
 
-app.get('/email/:sellerName/:itemName/:imgURL/:price/:shipping/:negotiatePrice', function(req, res) {
+app.get('/email/:userEmailText/:sellerEmailText/:sellerName/:itemName/:price/:shipping/:negotiatePrice', function(req, res) {
   var email = new sendgrid.Email();
+  if (req.params.negotiatePrice == undefined) {
+    req.params.negotiatePrice = req.params.price;
+  }
 
   this.negotiatePrice = req.params.negotiatePrice || req.params.price;
 
-  email.to = 'jnguyen3950@gmail.com',
-  email.from = 'other@example.com',
+  email.to = req.params.sellerEmailText,
+  email.from = req.params.userEmailText,
   email.subject = 'Price negotiate on item:',
   email.html = '<h2>Hello ' + req.params.sellerName + ',</h2>'
-                + '<p>I saw that you have a listed item: ' + req.params.itemName + '<p>'
-                + '<img src="' + req.params.imgURL + '">'
-                + '<p>Price: ' + req.params.price + '<p>'
-                + '<p>Shipping: ' + req.params.shipping + '<p>'
-                + '<p>via eBay. <p>'
-                + '<p>I would like to purchase the item for a total price of: ' + req.params.negotiatePrice + '<p>'
-                + '<p>Please reply if you are interested,<p>'
-                + '<p>Anonymous<p>';
+                + '<p>I saw that you have a listed item:</p>'
+                + '<p><strong>' + req.params.itemName + '</strong></p>'
+                + '<p>Price: <strong>' + req.params.price + '</strong></p>'
+                + '<p>Shipping: <strong>' + req.params.shipping + '</strong></p>'
+                + '<p>via eBay. </p>'
+                + '<p>I would like to purchase the item for a total price of: $<strong>' + req.params.negotiatePrice + '</strong></p>'
+                + '<p>Please reply if you are interested,</p>'
+                + '<p>Anonymous</p>';
   email.setHeaders({full: 'hearts'});
 
   sendgrid.send(email, function(err, json) {
     if (err) res.send(err);
-    console.log(json);
   });
 });
 

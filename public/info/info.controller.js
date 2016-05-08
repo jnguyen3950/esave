@@ -28,6 +28,17 @@ function info($http, Info) {
     Info.insertCategory(itemId, this.categoryId);
   }
 
-  vm.submit = function(userEmailText, sellerEmailText, userPrice) {
+  vm.submitEmail = function(userEmailText, sellerEmailText, userPrice) {
+
+    console.log(userEmailText);
+    console.log(sellerEmailText);
+
+    sellerName = vm.item.Item.Seller.UserID;
+    itemName = vm.item.Item.Title;
+    price = vm.item.Item.ConvertedCurrentPrice.Value;
+    shipping = vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
+    negotiatePrice = userPrice;
+
+    Info.submitEmail(userEmailText, sellerEmailText, sellerName, itemName, price, shipping, negotiatePrice);
   }
 }
