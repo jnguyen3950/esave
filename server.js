@@ -1,3 +1,9 @@
+var appID = "JustinNg-Loclist-PRD-04d8cb72c-0a1a082c";
+var devID = "6ae2db01-f633-4ac3-8294-c4c121e98ea2";
+var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
+
+var sendGridID = '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';
+
 var express = require('express');
 var app = express();
 var jsonParser = require('body-parser').json();
@@ -5,13 +11,11 @@ var cookieParser = require('cookie-parser');
 var querystring = require('querystring');
 var request = require('request');
 var _ = require('underscore');
-var MongoClient = require('mongodb').MongoClient;
 
+var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://jnguyen3950:jnguyen3950@ds013232.mlab.com:13232/esave';
 
-var appID = "JustinNg-Loclist-PRD-04d8cb72c-0a1a082c";
-var devID = "6ae2db01-f633-4ac3-8294-c4c121e98ea2";
-var certID = "PRD-4d8cb72c0f2d-9aca-420a-ae49-327d";
+var sendgrid  = require('sendgrid')(sendGridID);
 
 app.use(express.static('./public/'));
 
@@ -31,7 +35,7 @@ app.get('/greeting/:categoryId', function(req, res) {
    + 'paginationInput.entriesPerPage=6', function(err, response, body) {
      if(err) res.sendStatus(err);
      res.send(body);
-   })
+   });
   }
 });
 
@@ -93,6 +97,33 @@ app.get('/userID', function(req, res) {
      if(err) res.sendStatus(err);
      res.send(body);
    });
+});
+
+app.get('/email/:userEmailText/:sellerEmailText/:sellerName/:itemName/:price/:shipping/:negotiatePrice', function(req, res) {
+  var email = new sendgrid.Email();
+  if (req.params.negotiatePrice == undefined) {
+    req.params.negotiatePrice = req.params.price;
+  }
+
+  this.negotiatePrice = req.params.negotiatePrice || req.params.price;
+
+  email.to = req.params.sellerEmailText,
+  email.from = req.params.userEmailText,
+  email.subject = 'Price negotiate on item: ' + req.params.itemName,
+  email.html = '<h2>Hello ' + req.params.sellerName + ',</h2>'
+                + '<p>I saw that you have a listed item:</p>'
+                + '<p><strong>' + req.params.itemName + '</strong></p>'
+                + '<p>Price: <strong>$' + req.params.price + '</strong></p>'
+                + '<p>Shipping: <strong>$' + req.params.shipping + '</strong></p>'
+                + '<p>via eBay. </p>'
+                + '<p>I would like to purchase the item for a total price of: <strong>$' + req.params.negotiatePrice + '</strong></p>'
+                + '<p>Please reply if you are interested,</p>'
+                + '<p>Anonymous</p>';
+  email.setHeaders({full: 'hearts'});
+
+  sendgrid.send(email, function(err, json) {
+    if (err) res.send(err);
+  });
 });
 
 app.get('/mongo/read/', function(req, res) {

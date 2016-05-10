@@ -3,8 +3,8 @@ var app = angular.module('esave');
 app.factory('Info', info);
 
 function info($http) {
+  var currentURL = window.location.origin;
   function currentItem(itemId) {
-    currentURL = window.location.origin;
     this.itemId = itemId;
     return $http.get(currentURL + '/info/' + this.itemId);
   }
@@ -15,8 +15,13 @@ function info($http) {
     $http.post(currentURL + '/mongo/create/' + this.itemId + '/' + this.categoryId);
   }
 
+  function submitEmail(userEmailText, sellerEmailText, sellerName, itemName, price, shipping, negotiatePrice) {
+    $http.get(currentURL + '/email/'  + userEmailText + '/' + sellerEmailText + '/' + sellerName + '/' + itemName + '/' + price + '/' + shipping + '/' + negotiatePrice);
+  }
+
   return {
     currentItem: currentItem,
-    insertCategory: insertCategory
+    insertCategory: insertCategory,
+    submitEmail: submitEmail
   }
 }

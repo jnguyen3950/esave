@@ -13,6 +13,9 @@ function info($http, Info) {
       vm.item = result.data;
       vm.choose(vm.item.Item.PrimaryCategoryID);
       vm.updatePicture(vm.item.Item.PictureURL[0]);
+
+      vm.userEmail = "userEmail@example.org";
+      vm.sellerEmail = vm.item.Item.Seller.UserID + "@example.org";
     });
   }
 
@@ -23,5 +26,19 @@ function info($http, Info) {
   vm.choose = function(categoryId) {
     this.categoryId = categoryId;
     Info.insertCategory(itemId, this.categoryId);
+  }
+
+  vm.submitEmail = function(userEmailText, sellerEmailText, userPrice) {
+
+    sellerName = vm.item.Item.Seller.UserID;
+    itemName = vm.item.Item.Title;
+    price = vm.item.Item.ConvertedCurrentPrice.Value;
+    shipping = 10;
+    // shipping = vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
+    negotiatePrice = userPrice || price;
+
+    console.log(vm.item.Item);
+
+    Info.submitEmail(userEmailText, sellerEmailText, sellerName, itemName, price, shipping, negotiatePrice);
   }
 }
