@@ -30,14 +30,14 @@ function info($http, Info) {
 
   vm.submitEmail = function(userEmailText, sellerEmailText, userPrice) {
 
-    console.log(userEmailText);
-    console.log(sellerEmailText);
-
     sellerName = vm.item.Item.Seller.UserID;
     itemName = vm.item.Item.Title;
     price = vm.item.Item.ConvertedCurrentPrice.Value;
-    shipping = vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
-    negotiatePrice = userPrice;
+    shipping = 10;
+    // shipping = vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
+    negotiatePrice = userPrice || price;
+
+    console.log(vm.item.Item);
 
     Info.submitEmail(userEmailText, sellerEmailText, sellerName, itemName, price, shipping, negotiatePrice);
   }

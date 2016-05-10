@@ -109,14 +109,14 @@ app.get('/email/:userEmailText/:sellerEmailText/:sellerName/:itemName/:price/:sh
 
   email.to = req.params.sellerEmailText,
   email.from = req.params.userEmailText,
-  email.subject = 'Price negotiate on item:',
+  email.subject = 'Price negotiate on item: ' + req.params.itemName,
   email.html = '<h2>Hello ' + req.params.sellerName + ',</h2>'
                 + '<p>I saw that you have a listed item:</p>'
                 + '<p><strong>' + req.params.itemName + '</strong></p>'
-                + '<p>Price: <strong>' + req.params.price + '</strong></p>'
-                + '<p>Shipping: <strong>' + req.params.shipping + '</strong></p>'
+                + '<p>Price: <strong>$' + req.params.price + '</strong></p>'
+                + '<p>Shipping: <strong>$' + req.params.shipping + '</strong></p>'
                 + '<p>via eBay. </p>'
-                + '<p>I would like to purchase the item for a total price of: $<strong>' + req.params.negotiatePrice + '</strong></p>'
+                + '<p>I would like to purchase the item for a total price of: <strong>$' + req.params.negotiatePrice + '</strong></p>'
                 + '<p>Please reply if you are interested,</p>'
                 + '<p>Anonymous</p>';
   email.setHeaders({full: 'hearts'});
