@@ -13,12 +13,12 @@ function greeting($http, Greeting) {
   xhr.addEventListener('load', function() {
     var response = JSON.parse(xhr.responseText);
     for (var i = response.length - 1; i >= 0 ; i--) {
-      cateSearch(response[i].categoryId);
+      cateSearch(response[i].categoryId, vm.page);
     }
   });
 
-  function cateSearch(categoryId) {
-    var promise = Greeting.relatedItems(categoryId);
+  function cateSearch(categoryId, page) {
+    var promise = Greeting.relatedItems(categoryId, page);
     promise.then(function(result) {
       var itemsArray = result.data.findItemsByCategoryResponse[0].searchResult[0].item;
       var refinedList = [];

@@ -19,7 +19,7 @@ var sendgrid  = require('sendgrid')(sendGridID);
 
 app.use(express.static('./public/'));
 
-app.get('/greeting/:categoryId', function(req, res) {
+app.get('/greeting/:categoryId/:page', function(req, res) {
   if(req.params.categoryId == undefined) res.sendStatus(404);
   else {
     request('http://svcs.ebay.com/services/search/FindingService/v1?'
@@ -32,7 +32,7 @@ app.get('/greeting/:categoryId', function(req, res) {
    + '&buyerPostalCode=92660&'
    + 'itemFilter.name=MaxDistance&'
    + 'itemFilter.value=25&'
-   + 'paginationInput.entriesPerPage=30', function(err, response, body) {
+   + 'paginationInput.pageNumber=' + req.params.page, function(err, response, body) {
      if(err) res.sendStatus(err);
      res.send(body);
    });
