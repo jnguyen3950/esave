@@ -11,6 +11,18 @@ function info($http, Info) {
     var myItem = Info.currentItem(itemId);
     myItem.then(function(result) {
       vm.item = result.data;
+
+      console.log(vm.item);
+      console.log(vm.item.Item.ShippingCostSummary.ShippingType);
+
+      if(vm.item.Item.ShippingCostSummary.ShippingType == "Calculated") {
+        vm.shippingValue = "Varies by range.";
+      }
+      else {
+        vm.shippingValue = '$ ' + vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
+      }
+      console.log(vm.shippingValue);
+
       vm.choose(vm.item.Item.PrimaryCategoryID);
       vm.updatePicture(vm.item.Item.PictureURL[0]);
 

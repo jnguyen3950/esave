@@ -28,14 +28,14 @@ label {
 
 @media (min-width: 992px) {
   .thumbnail-img {
-    height: 140px;
+    height: 120px;
     overflow: hidden;
   }
 }
 
 @media (min-width: 1200px) {
   .thumbnail-img {
-    height: 150px;
+    height: 120px;
     overflow: hidden;
   }
 }
@@ -110,5 +110,5 @@ label {
 }
 
 #searchBar {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
