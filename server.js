@@ -32,7 +32,7 @@ app.get('/greeting/:categoryId', function(req, res) {
    + '&buyerPostalCode=92660&'
    + 'itemFilter.name=MaxDistance&'
    + 'itemFilter.value=25&'
-   + 'paginationInput.entriesPerPage=6', function(err, response, body) {
+   + 'paginationInput.entriesPerPage=30', function(err, response, body) {
      if(err) res.sendStatus(err);
      res.send(body);
    });
@@ -104,7 +104,6 @@ app.get('/email/:userEmailText/:sellerEmailText/:sellerName/:itemName/:price/:sh
   if (req.params.negotiatePrice == undefined) {
     req.params.negotiatePrice = req.params.price;
   }
-
   this.negotiatePrice = req.params.negotiatePrice || req.params.price;
 
   email.to = req.params.sellerEmailText,
