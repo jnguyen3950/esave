@@ -11,16 +11,16 @@
 
 ## Homepage:
 
-![eSave homepage](https://github.com/jnguyen3950/save/blob/master/img/screenshot1.png)
+![eSave homepage](https://github.com/jnguyen3950/save/blob/master/project_screenshot/screenshot1.png)
 
 ## Search page:
 
-![eSave search page](https://github.com/jnguyen3950/save/blob/master/img/screenshot2.png)
+![eSave search page](https://github.com/jnguyen3950/save/blob/master/project_screenshot/screenshot2.png)
 
 ## Product information page:
 
-![eSave product page](https://github.com/jnguyen3950/save/blob/master/img/screenshot3.png)
+![eSave product page](https://github.com/jnguyen3950/save/blob/master/project_screenshot/screenshot3.png)
 
 ## Seller contact modal:
 
-![eSave seller contact modal page](https://github.com/jnguyen3950/save/blob/master/img/screenshot4.png)
+![eSave seller contact modal page](https://github.com/jnguyen3950/save/blob/master/project_screenshot/screenshot4.png)
