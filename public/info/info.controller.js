@@ -11,18 +11,12 @@ function info($http, Info) {
     var myItem = Info.currentItem(itemId);
     myItem.then(function(result) {
       vm.item = result.data;
-
-      console.log(vm.item);
-      console.log(vm.item.Item.ShippingCostSummary.ShippingType);
-
       if(vm.item.Item.ShippingCostSummary.ShippingType == "Calculated") {
         vm.shippingValue = "Varies by range.";
       }
       else {
         vm.shippingValue = '$ ' + vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
       }
-      console.log(vm.shippingValue);
-
       vm.choose(vm.item.Item.PrimaryCategoryID);
       vm.updatePicture(vm.item.Item.PictureURL[0]);
 
@@ -45,11 +39,8 @@ function info($http, Info) {
     sellerName = vm.item.Item.Seller.UserID;
     itemName = vm.item.Item.Title;
     price = vm.item.Item.ConvertedCurrentPrice.Value;
-    shipping = 10;
-    // shipping = vm.item.Item.ShippingCostSummary.ShippingServiceCost.Value;
+    shipping = vm.shippingValue;
     negotiatePrice = userPrice || price;
-
-    console.log(vm.item.Item);
 
     Info.submitEmail(userEmailText, sellerEmailText, sellerName, itemName, price, shipping, negotiatePrice);
   }
